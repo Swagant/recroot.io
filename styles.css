@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #161616;
+    color: #edf0f1;
+}
+
+h1, li, a {
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Rubik', sans-serif;
+}
+
+h1 {
+    font-size: 55px;
+}
+
+li, a {
+    font-size: 25px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+#logo {
+    cursor: pointer;
+}
+
+#nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+#nav_links li a {
+    transition: all 0.15s ease 0s;
+}
+
+#nav_links li a:hover {
+    color: #3498db;
+}
+
+#searchbox {
+    border-radius: 50px;
+    height: 70px;
+    text-align: center;
+    font-size: 20px;
+    /*width: 90%;*/
+    width: 350px;
+    -webkit-transition: width 0.2s ease-in-out;
+    transition: width 0.2s ease-in-out;
+    outline: none;
+    padding: 20px;
+
+}
+
+#searchbox:focus {
+    width: 90%;
+}
+
+#search {
+    text-align: center;
+}
+
+#help-text, .help-button {
+    font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: grey;
+}
+
+.help-button {
+    color: #FF729F;
+}
+
+.help-button:hover {
+    cursor: pointer;
+}
+
+h2, .pink-text {
+    font-family: 'Rubik', sans-serif;
+    font-size: 50px;
+}
+
+.pink-text {
+    color: #FF729F;
+}
+
+#tagline {
+    text-align: center;
+}
+
+.search-function-button {
+    font-family: 'Rubik', sans-serif;
+    background-color: none;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 10px;
+}
+
+#search-function-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 30px;
+    opacity: 90%;
+}
+
+.search-function-button:hover {
+    background-color: white;
+    color: #161616;
+    transition: all 0.2s ease 0s;
+    border: 2px white solid;
+}
+
+footer {
+    margin-top: 150px;
+    text-align: center;
+    align-content: center;
+}
+
+#footer_links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+}
+
+#footer_links li, a {
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+#privacyStatement:hover {
+    transition: all 0.5s ease 0s;
+    color: rgb(10, 224, 10);
+}
+
+#madeWithWitAi {
+    color: #FF729F;
+}
+
+#madeWithWitAi:hover {
+    transition: all 0.5s ease 0s;
+    color: rgb(197, 5, 197);
+}
+
+#errorAndQueryTab {
+    background-color: rgb(218, 218, 218);
+    width: 80%;
+    text-align: center;
+    margin: 0px auto;
+    border-radius: 30px;
+}
+
+#errorAndQueryTab p {
+    padding: 5px;
+    text-align: center;
+    background: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+}
+
+#jobDescriptionTab {
+    background-color: white;
+    width: 80%;
+    text-align: center;
+    margin: 0px auto;
+    border-radius: 50px;
+}
+
+#jobDescriptionTab p, u, li, ul {
+    padding: 5px;
+    text-align: center;
+    background: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 25px;
+    color: #161616;
+
+}
+
+
+
+
+
+
