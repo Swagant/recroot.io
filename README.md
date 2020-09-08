@@ -7,15 +7,14 @@ Recroot is a simple and elegant tool that automates and simplifies the recruitin
 
 - Computer for best experience
 - For speech recognition, either Chrome or Microsoft Edge webbrowsers
-- Must already be logged into an AngelList account in advance, preferably a new/unused one (make an account [here](https://angel.co/join))
 
 ## Description
 
-On the website, a user can **provide an input** via either their keyboard or speech-to-text conversion. The input details a particular profile of people they are looking for to gain **funding, expertise or help with their startup**. The query is then analysed with a **Natural Language Processing (NLP) model** that extracts certain **attributes** in the sentence using [Wit.ai](https://wit.ai/), such as *location*, *industry* and *number of years of professional experience*. The NLP model then returns these attributes with their corresponding values which are then used to **webscrape [AngelList](https://angel.co/)** and identify individuals who match the criteria. Finally, all user profiles that meet the parameters are returned back to the user on Recroot.io, each account with a profile picture, name, and link to the account.
+On the website, a user can **provide an input** via either their keyboard or speech-to-text conversion. The input details a particular profile of people they are looking for to potentially hire. The query is then analysed with a **Natural Language Processing (NLP) model** that extracts certain **attributes** in the sentence using [Wit.ai](https://wit.ai/), such as *location*, *industry* and *number of years of professional experience*. The NLP model then returns these attributes with their corresponding values which are then used to **generate a full job description** which is then returned to the user.
 
 ## Purpose
 
-The concept of Recroot.io revolves around the idea that it takes a lot of time, for both people working in HR and especially newly founded startups, to find potential employees. An example is the lengthy search process on sites like LinkedIn, where you have to apply several separate filters then search for the locations and keywords manually, which ultimately consumes a lot of precious time that could be spent further developing a product. Plus, the information people present online can be lengthy, yet computers enable you to extract only the important bits in a matter of seconds. Therefore, the rationale behind Recroot is to limit the time it takes to find such individuals, but also let people make more in-depth searches than what traditional filters and searchbars allow. Overall this helps make better well-informed decisions for who to hire quicker.
+The concept of Recroot.io revolves around the idea that it takes a lot of time, for both people working in HR and especially newly founded startups, to generate job descriptions because of the time it takes as well as not knowing what to start with. With Recroot, in seconds you can have a great job description by only providing one sentence that describes the ideal employee and their requirements, and letting Recroot do the rest of the work.
 
 ## Providing Input
 
@@ -27,9 +26,7 @@ Users can either type a description of a profile, or use the built-in speech rec
 
 ## Attributes and Descriptions
 
-Every suitable description has up to 8 unique attributes that, depending on the context, the NLP model extracts and stores along with their corresponding values:
-
-### Built-In (input types for Angel.co's search filters)
+Every suitable description has up to 9 unique attributes that, depending on the context, the NLP model extracts and stores along with their corresponding values:
 
 - Location
   - current working location
@@ -39,24 +36,23 @@ Every suitable description has up to 8 unique attributes that, depending on the 
   - specific industries specialising in
 - Company
   - previous or current enterprises worked for
-
-### External (webscraper needs to calculate or identify alone)
-
-- Min_Connections
-  - minimum number of connections on AngelList
 - Position
   - previous or current position in organization
 - Has_Degree
   - checks if has secondary education degree
 - Min_Years_Of_Experience
   - minimum years of professional experience collectively
+- Quality
+  - qualities the employee should exhibit
+- Skill
+  - skills or capabilities proficient in
   
 ### Sample Descriptions* 
 **Quotation marks should not be used in actual queries on the site*
 
 - "find somebody that operates from Silicon Valley, specialises in business development, systems and computer networks with at least 7 years of experience and a degree"
 
-- "find somebody who has 50+ connections, lives in Dusseldorf, has/had a position as manager while working in customer service"
+- "find somebody who lives in Dusseldorf, has/had a position as manager while working in customer service, who knows how to operate a restaurant and is patient and analutical"
 
 - "find somebody with 20 years of experience in impact investing, studied at ecole polytechnique and currently operates in marseille"
 
@@ -65,37 +61,27 @@ Every suitable description has up to 8 unique attributes that, depending on the 
 ### Example Query Analysis
 
 ```python
-  query = "find somebody that lives in Europe, studied at Stanford, industries are marketing and software engineering, worked at Google or Amazon, has at least 50 connections, is a founder, and has a minimum of 10 years of experience"
+  query = "find somebody that lives in Europe, studied at Stanford, industries are marketing and software engineering, worked at Google or Amazon, is a founder, knows sql and tensorflow and is mathematically-oriented, creative and hardworking, and has a minimum of 10 years of experience"
   
-  attributes_identified = ['location', 'school', 'industry', 'company', 'min_connections', 'position', 'min_years_of_experience']
+  attributes_identified = ['location', 'school', 'industry', 'company', 'position', 'skill', 'quality', 'min_years_of_experience']
   
   location = 'Europe'
   school = 'Stanford'
   industry = ['marketing', 'software engineering']
   company = ['Google', 'Amazon']
   min_connections = 50
+  skill = ['sql', 'tensorflow']
+  quality = ['mathematically-oriented', 'creative', 'hardworking']
   position = 'founder'
   min_years_of_experience = 10
 ```
 
-These attributes and their respective values are returned and subsequently passed as paramaters to the webscraper.
+These attributes and their respective values are returned and subsequently passed as paramaters to the job description generator.
 
 ## Training + Testing Data and Metrics
 
-In order to save time, I developed a python script (dataGenerator.py) that would generate human-like descriptions, all of them including all 8 attributes to provide the most exposure. The way each sentence was built was by decomposing it by attributes, then generating random values from handmade lists of popular values and pairing this value with a randomized prefix (ei. who is living in vs. residing in) and suffix (*', '* or *' and '* or *', and '* or *' '*). The individual phrases would then be compiled together in a random order, and the suffix of the final phrase would be cut off. Then I would simply run the script and enter an amount of descriptions I want, and would provide them to Wit one-by-one, annotating unfamiliar terms when needed on the go.
--need to write the statistics part here
+In order to save time, I developed a python script (dataGenerator.py) that would generate human-like descriptions, all of them including all 8 (original, now a few swapped) attributes to provide the most exposure. The way each sentence was built was by decomposing it by attributes, then generating random values from handmade lists of popular values and pairing this value with a randomized prefix (ei. who is living in vs. residing in) and suffix (*', '* or *' and '* or *', and '* or *' '*). The individual phrases would then be compiled together in a random order, and the suffix of the final phrase would be cut off. Then I would simply run the script and enter an amount of descriptions I want, and would provide them to Wit one-by-one, annotating unfamiliar terms when needed on the go. After a test of best of 10 computer-generated phrases, the accuracy rate was 100% on 8/10 of the sentences, making the overall success rate ~94%. Regarding the all attributes, the data generator was programmed with the old attributes in mind that would be used for webscraping; therefore, when I began training the NLP model on the 2 new attributes, quality and skill, I had to manually insert a few keywords from those attributes every now and then.
 
-## Why AngelList
-
-The primary reasons Recroot.io scrapes AngelList instead of the more popular LinkedIn database is threefold:
-
-1. LinkedIn only allows you to view the profiles of users that are either first or second degree friends with you, whereas on AngelList all profiles are open and public
-
-2. AngelList's individual sections of the profile are much more concise and strict which reduces the variety of different content people can include. This is relevant as it makes it easier for the webscraper to retrieve vital information in less time with a higher accuracy rate.
-
-3. AngelList is intended for (tech) startups and angel investors, meaning that everybody on the site has a common interest of aiding or collaborating with startups. A more niche group of people also implies that majority of people on the site are willing to help, however on LinkedIn it is frequently the case that people aren't even looking for work at the moment. In addition, what many online job websites don't incorporate is a large population of angel investors yet AngelList does, meaning anybody using Recroot.io can take advantage of not only identifying individuals that are willing to help grow their startup with expertise and advice, but also those that will potentially supply them with financial resources too.
-
-## AngelList Webscraper
 
 ## Contact for Support
 
@@ -105,7 +91,7 @@ Contact me through any of the following:
 - [Email](mailto:smendeleev7@gmail.com)
 
 ## License
-[MIT](https://github.com/StiopaPopa/recroot.io/blob/master/LICENSE)
+[GPL-3.0](https://github.com/StiopaPopa/recroot.io/blob/master/LICENSE)
 
 
 
