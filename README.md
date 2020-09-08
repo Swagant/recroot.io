@@ -1,5 +1,5 @@
 # Recr👀t.io
-![Twitter Follow](https://img.shields.io/twitter/follow/MendeleevSteve?style=social) ![GitHub followers](https://img.shields.io/github/followers/StiopaPopa?style=social) ![GitHub Release Date](https://img.shields.io/github/release-date/StiopaPopa/recroot.io?style=flat-square) 
+![Twitter Follow](https://img.shields.io/twitter/follow/MendeleevSteve?style=social) ![GitHub followers](https://img.shields.io/github/followers/StiopaPopa?style=social)  
 
 Recroot is a simple and elegant tool that automates and simplifies the recruiting process using natural language processing
 
