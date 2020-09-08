@@ -9,7 +9,7 @@ function generateDescription(location, school, industry, company, min_years_of_e
         text += "We are particularly searching for people that have either graduated or are currently attending " + school + ". ";
     }
     if(industry.length > 0) {
-        text += "Prefered industries for a candidate include having worked in ";
+        text += "Preferred industries for a candidate include having worked in ";
         for(var i = 0; i<industry.length; i++) {
             if(i!=industry.length-1) {
                 text += industry[i] + ", ";
