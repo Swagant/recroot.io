@@ -187,7 +187,12 @@ footer {
 
 }
 
-
+#shareButtons {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+    padding-top: 20px;
+}
 
 
 
