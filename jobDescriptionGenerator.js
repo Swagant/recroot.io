@@ -1,3 +1,4 @@
+
 //generate main desciption function
 function generateDescription(location, school, industry, company, min_years_of_experience, position, has_degree, quality, skill) {
     var text = "We are currently looking for potential candidates for a job at our organization. ";
