@@ -1,4 +1,3 @@
-
 window.onload = function() {
     
     //declare important tabs
